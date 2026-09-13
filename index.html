@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Civics &amp; Citizenship — Study &amp; Test</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F2EAD3;
+  --paper-dark:#E8DCB9;
+  --navy:#16233D;
+  --navy-deep:#0E1728;
+  --brass:#A9822C;
+  --brass-light:#C9A54B;
+  --red:#8C3430;
+  --ink:#241F14;
+  --ink-soft:#5B5140;
+  --line:#C9BC97;
+  --white-ink:#FBF7EA;
+  --shadow: 0 1px 0 rgba(36,31,20,0.08);
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--paper);
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(169,130,44,0.05), transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(140,52,48,0.04), transparent 45%);
+  color:var(--ink);
+  font-family:'Public Sans', -apple-system, sans-serif;
+  min-height:100vh;
+  line-height:1.5;
+}
+.serif{font-family:'Source Serif 4', Georgia, serif;}
+
+/* ---------- Header ---------- */
+header.top{
+  background:var(--navy);
+  color:var(--white-ink);
+  padding:22px 20px 20px;
+  position:relative;
+  border-bottom:6px solid var(--brass);
+}
+.header-inner{
+  max-width:880px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+.seal{
+  flex:0 0 auto;
+  width:52px;height:52px;
+}
+.title-block h1{
+  font-family:'Source Serif 4', Georgia, serif;
+  font-weight:700;
+  font-size:1.5rem;
+  margin:0 0 2px;
+  letter-spacing:0.2px;
+}
+.title-block p{
+  margin:0;
+  font-size:0.82rem;
+  color:#C7CEDC;
+}
+
+/* version toggle */
+.version-row{
+  max-width:880px;
+  margin:14px auto 0;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+.version-btn{
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.25);
+  color:var(--white-ink);
+  padding:8px 14px;
+  border-radius:3px;
+  font-size:0.82rem;
+  font-weight:600;
+  cursor:pointer;
+  font-family:'Public Sans',sans-serif;
+}
+.version-btn.active{
+  background:var(--brass);
+  border-color:var(--brass);
+  color:var(--navy-deep);
+}
+.version-note{
+  font-size:0.75rem;
+  color:#B9C2D4;
+  margin-left:auto;
+}
+
+/* ---------- Nav tabs ---------- */
+nav.tabs{
+  max-width:880px;
+  margin:0 auto;
+  display:flex;
+  gap:2px;
+  padding:0 20px;
+  margin-top:18px;
+  overflow-x:auto;
+}
+.tab-btn{
+  background:var(--paper-dark);
+  border:1px solid var(--line);
+  border-bottom:none;
+  padding:10px 16px;
+  font-family:'Public Sans',sans-serif;
+  font-weight:600;
+  font-size:0.85rem;
+  color:var(--ink-soft);
+  cursor:pointer;
+  border-radius:5px 5px 0 0;
+  white-space:nowrap;
+}
+.tab-btn.active{
+  background:var(--white-ink);
+  color:var(--navy);
+  border-color:var(--line);
+  position:relative;
+  top:1px;
+}
+
+/* ---------- Main document card ---------- */
+main{
+  max-width:880px;
+  margin:0 auto 60px;
+  padding:0 20px;
+}
+.doc-card{
+  background:var(--white-ink);
+  border:1px solid var(--line);
+  border-radius:0 6px 6px 6px;
+  padding:28px 26px;
+  box-shadow: 0 2px 10px rgba(36,31,20,0.06);
+  min-height:340px;
+}
+.doc-card h2{
+  font-family:'Source Serif 4', Georgia, serif;
+  font-size:1.2rem;
+  margin:0 0 4px;
+  color:var(--navy);
+}
+.doc-sub{
+  font-size:0.82rem;
+  color:var(--ink-soft);
+  margin-bottom:20px;
+}
+
+/* ---------- Officeholder banner ---------- */
+.banner{
+  border:1px solid var(--brass-light);
+  background:#FBF3DD;
+  border-radius:4px;
+  padding:10px 14px;
+  font-size:0.78rem;
+  color:var(--ink-soft);
+  margin-bottom:18px;
+}
+.banner b{color:var(--ink);}
+
+/* ---------- Study/flashcards ---------- */
+.category-scroller{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding-bottom:12px;
+  margin-bottom:16px;
+  border-bottom:1px dashed var(--line);
+}
+.cat-pill{
+  border:1px solid var(--line);
+  background:var(--paper);
+  color:var(--ink-soft);
+  padding:6px 12px;
+  border-radius:14px;
+  font-size:0.75rem;
+  font-weight:600;
+  white-space:nowrap;
+  cursor:pointer;
+}
+.cat-pill.active{
+  background:var(--navy);
+  color:var(--white-ink);
+  border-color:var(--navy);
+}
+.flashcard{
+  border:2px solid var(--navy);
+  border-radius:8px;
+  min-height:220px;
+  padding:30px 26px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  cursor:pointer;
+  background:
+    repeating-linear-gradient(var(--white-ink),var(--white-ink) 30px, #F2ECDA 31px);
+  position:relative;
+}
+.flashcard .qnum{
+  position:absolute;
+  top:10px;left:14px;
+  font-size:0.7rem;
+  color:var(--brass);
+  font-weight:700;
+}
+.flashcard .star{
+  position:absolute;
+  top:10px;right:14px;
+  font-size:0.7rem;
+  color:var(--red);
+  font-weight:700;
+}
+.flashcard .qtext{
+  font-family:'Source Serif 4', Georgia, serif;
+  font-size:1.25rem;
+  color:var(--navy);
+  margin-bottom:10px;
+}
+.flashcard .atext{
+  font-size:1rem;
+  color:var(--ink);
+  font-weight:600;
+}
+.flashcard .hint{
+  font-size:0.72rem;
+  color:var(--ink-soft);
+  margin-top:16px;
+}
+.flash-controls{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:16px;
+}
+.flash-progress{font-size:0.8rem;color:var(--ink-soft);}
+.btn-row{display:flex;gap:8px;}
+button.nav-btn{
+  background:var(--navy);
+  color:var(--white-ink);
+  border:none;
+  padding:9px 16px;
+  border-radius:4px;
+  font-weight:600;
+  font-size:0.82rem;
+  cursor:pointer;
+  font-family:'Public Sans',sans-serif;
+}
+button.nav-btn.ghost{
+  background:transparent;
+  color:var(--navy);
+  border:1px solid var(--navy);
+}
+button.nav-btn:disabled{opacity:0.4;cursor:default;}
+.self-grade{display:flex;gap:8px;margin-top:16px;justify-content:center;}
+.grade-btn{
+  border:none;
+  padding:9px 16px;
+  border-radius:4px;
+  font-weight:700;
+  font-size:0.82rem;
+  cursor:pointer;
+  font-family:'Public Sans',sans-serif;
+}
+.grade-yes{background:#3E6B4F;color:white;}
+.grade-no{background:var(--red);color:white;}
+
+/* ---------- Setup / mode intro screens ---------- */
+.setup-grid{display:grid;gap:14px;grid-template-columns:1fr 1fr;margin:18px 0;}
+@media(max-width:520px){.setup-grid{grid-template-columns:1fr;}}
+.setup-card{
+  border:1px solid var(--line);
+  border-radius:6px;
+  padding:14px 16px;
+  cursor:pointer;
+  background:var(--paper);
+}
+.setup-card.selected{
+  border-color:var(--brass);
+  background:#FBF3DD;
+}
+.setup-card h3{margin:0 0 4px;font-size:0.95rem;color:var(--navy);}
+.setup-card p{margin:0;font-size:0.78rem;color:var(--ink-soft);}
+.start-btn{
+  background:var(--brass);
+  color:var(--navy-deep);
+  border:none;
+  padding:12px 22px;
+  border-radius:4px;
+  font-weight:800;
+  font-size:0.9rem;
+  cursor:pointer;
+  font-family:'Public Sans',sans-serif;
+  margin-top:6px;
+}
+
+/* ---------- Quiz / interview ---------- */
+.progress-bar-wrap{
+  height:6px;background:var(--paper-dark);border-radius:3px;overflow:hidden;margin-bottom:6px;
+}
+.progress-bar-fill{height:100%;background:var(--brass);}
+.tally{display:flex;gap:16px;font-size:0.78rem;color:var(--ink-soft);margin-bottom:18px;}
+.tally b{color:var(--ink);}
+.qbox{
+  border:1px solid var(--line);
+  border-radius:6px;
+  padding:22px;
+  background:var(--paper);
+  margin-bottom:16px;
+}
+.qbox .qnum-badge{
+  display:inline-block;
+  background:var(--navy);
+  color:var(--white-ink);
+  font-size:0.7rem;
+  font-weight:700;
+  padding:3px 8px;
+  border-radius:3px;
+  margin-bottom:10px;
+}
+.qbox .qtext{
+  font-family:'Source Serif 4', Georgia, serif;
+  font-size:1.15rem;
+  color:var(--navy);
+}
+.mc-options{display:grid;gap:10px;margin-top:16px;}
+.mc-option{
+  border:1px solid var(--line);
+  background:var(--white-ink);
+  padding:12px 14px;
+  border-radius:5px;
+  cursor:pointer;
+  font-size:0.9rem;
+  text-align:left;
+}
+.mc-option:hover{border-color:var(--brass);}
+.mc-option.correct{background:#E4EFE7;border-color:#3E6B4F;}
+.mc-option.incorrect{background:#F5E1DF;border-color:var(--red);}
+.mc-option.disabled{cursor:default;}
+.reveal-box{
+  margin-top:14px;
+  padding:14px 16px;
+  background:#FBF3DD;
+  border:1px solid var(--brass-light);
+  border-radius:5px;
+  font-size:0.9rem;
+}
+.reveal-box b{color:var(--navy);}
+
+/* ---------- Results ---------- */
+.result-hero{
+  text-align:center;
+  padding:20px 0;
+}
+.result-hero .big{
+  font-family:'Source Serif 4', Georgia, serif;
+  font-size:3rem;
+  font-weight:700;
+  color:var(--navy);
+}
+.result-hero .pass{color:#3E6B4F;}
+.result-hero .fail{color:var(--red);}
+.result-hero .verdict{
+  font-size:1.1rem;
+  font-weight:700;
+  margin-top:4px;
+}
+.missed-list{margin-top:20px;}
+.missed-item{
+  border-bottom:1px solid var(--line);
+  padding:10px 0;
+  font-size:0.85rem;
+}
+.missed-item .q{font-weight:600;color:var(--navy);}
+.missed-item .a{color:var(--ink-soft);margin-top:2px;}
+
+/* ---------- Stats ---------- */
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;}
+@media(max-width:520px){.stat-grid{grid-template-columns:1fr 1fr;}}
+.stat-box{
+  border:1px solid var(--line);
+  border-radius:6px;
+  padding:14px;
+  text-align:center;
+  background:var(--paper);
+}
+.stat-box .num{font-family:'Source Serif 4',serif;font-size:1.6rem;font-weight:700;color:var(--navy);}
+.stat-box .lbl{font-size:0.72rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.4px;}
+.history-row{
+  display:flex;justify-content:space-between;
+  border-bottom:1px solid var(--line);
+  padding:8px 0;font-size:0.85rem;
+}
+.empty-note{color:var(--ink-soft);font-size:0.85rem;font-style:italic;}
+
+footer.foot{
+  max-width:880px;margin:0 auto 40px;padding:0 20px;
+  font-size:0.72rem;color:var(--ink-soft);text-align:center;
+}
+footer.foot a{color:var(--navy);}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="header-inner">
+    <svg class="seal" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="47" fill="none" stroke="#C9A54B" stroke-width="3"/>
+      <circle cx="50" cy="50" r="38" fill="none" stroke="#C9A54B" stroke-width="1.5"/>
+      <g fill="#C9A54B">
+        <path id="starpath" d="M50 20 L52.9 28.5 L61.8 28.5 L54.6 33.9 L57.3 42.4 L50 37 L42.7 42.4 L45.4 33.9 L38.2 28.5 L47.1 28.5 Z"/>
+      </g>
+    </svg>
+    <div class="title-block">
+      <h1>Civics &amp; Citizenship</h1>
+      <p>Study, quiz, and mock-interview prep for the U.S. naturalization test</p>
+    </div>
+  </div>
+  <div class="version-row">
+    <button class="version-btn" id="btn-v2008" onclick="setVersion('2008')">2008 Test — 100 questions</button>
+    <button class="version-btn" id="btn-v2025" onclick="setVersion('2025')">2025 Test — 128 questions</button>
+    <span class="version-note" id="version-note"></span>
+  </div>
+</header>
+
+<nav class="tabs">
+  <button class="tab-btn" data-tab="study" onclick="setTab('study')">Study Flashcards</button>
+  <button class="tab-btn" data-tab="quiz" onclick="setTab('quiz')">Quick Quiz</button>
+  <button class="tab-btn" data-tab="interview" onclick="setTab('interview')">Mock Interview</button>
+  <button class="tab-btn" data-tab="missed" onclick="setTab('missed')">Missed Questions</button>
+  <button class="tab-btn" data-tab="stats" onclick="setTab('stats')">Progress</button>
+</nav>
+
+<main>
+  <div class="doc-card" id="content"></div>
+</main>
+
+<footer class="foot">
+  Questions and answers are drawn from USCIS's official civics test materials, current as of <span id="asof"></span>.
+  Officeholder answers (President, Vice President, Speaker, Chief Justice) can change — always verify at
+  <a href="https://www.uscis.gov/citizenship/testupdates" target="_blank">uscis.gov/citizenship/testupdates</a> close to your interview.
+  This app is an independent study tool and is not affiliated with USCIS.
+</footer>
+
+<script>
+// ============================================================
+// Official USCIS Civics Test data
+// 2008 test (100 Qs) — for N-400 filed before Oct 20, 2025
+// 2025 test (128 Qs) — for N-400 filed on/after Oct 20, 2025
+// "*" = answer can change with elections/appointments/location.
+// Current officeholder answers verified via web search, Sep 2026.
+// ============================================================
+
+const CURRENT = {
+  president: "Donald J. Trump",
+  vp: "JD Vance (James David Vance)",
+  speaker: "Mike Johnson",
+  chiefJustice: "John Roberts (John G. Roberts, Jr.)",
+  asOf: "September 2026"
+};
+
+// Each question: [id, category, question, [acceptable answers...], starred]
+const TEST_2008 = {
+  version: "2008",
+  label: "2008 Test (100 questions)",
+  totalAsked: 10,
+  passScore: 6,
+  failAt: 5,
+  questions: [
+[1,"Principles of American Democracy","What is the supreme law of the land?",["the Constitution"],false],
+[2,"Principles of American Democracy","What does the Constitution do?",["sets up the government","defines the government","protects basic rights of Americans"],false],
+[3,"Principles of American Democracy","The idea of self-government is in the first three words of the Constitution. What are these words?",["We the People"],false],
+[4,"Principles of American Democracy","What is an amendment?",["a change (to the Constitution)","an addition (to the Constitution)"],false],
+[5,"Principles of American Democracy","What do we call the first ten amendments to the Constitution?",["the Bill of Rights"],false],
+[6,"Principles of American Democracy","What is one right or freedom from the First Amendment?",["speech","religion","assembly","press","petition the government"],true],
+[7,"Principles of American Democracy","How many amendments does the Constitution have?",["twenty-seven (27)"],false],
+[8,"Principles of American Democracy","What did the Declaration of Independence do?",["announced our independence (from Great Britain)","declared our independence (from Great Britain)","said that the United States is free (from Great Britain)"],false],
+[9,"Principles of American Democracy","What are two rights in the Declaration of Independence?",["life","liberty","the pursuit of happiness"],false],
+[10,"Principles of American Democracy","What is freedom of religion?",["You can practice any religion, or not practice a religion."],false],
+[11,"Principles of American Democracy","What is the economic system in the United States?",["capitalist economy","market economy"],true],
+[12,"Principles of American Democracy","What is the \"rule of law\"?",["Everyone must follow the law.","Leaders must obey the law.","Government must obey the law.","No one is above the law."],false],
+[13,"System of Government","Name one branch or part of the government.",["Congress (legislative)","President (executive)","the courts (judicial)"],true],
+[14,"System of Government","What stops one branch of government from becoming too powerful?",["checks and balances","separation of powers"],false],
+[15,"System of Government","Who is in charge of the executive branch?",["the President"],false],
+[16,"System of Government","Who makes federal laws?",["Congress","Senate and House (of Representatives)","(U.S. or national) legislature"],false],
+[17,"System of Government","What are the two parts of the U.S. Congress?",["the Senate and House (of Representatives)"],true],
+[18,"System of Government","How many U.S. Senators are there?",["one hundred (100)"],false],
+[19,"System of Government","We elect a U.S. Senator for how many years?",["six (6)"],false],
+[20,"System of Government","Who is one of your state's U.S. Senators now?",["Answers vary by state — look up yours at senate.gov"],true],
+[21,"System of Government","The House of Representatives has how many voting members?",["four hundred thirty-five (435)"],false],
+[22,"System of Government","We elect a U.S. Representative for how many years?",["two (2)"],false],
+[23,"System of Government","Name your U.S. Representative.",["Answers vary by district — look up yours at house.gov"],false],
+[24,"System of Government","Who does a U.S. Senator represent?",["all people of the state"],false],
+[25,"System of Government","Why do some states have more Representatives than other states?",["(because of) the state's population","(because) they have more people"],false],
+[26,"System of Government","We elect a President for how many years?",["four (4)"],false],
+[27,"System of Government","In what month do we vote for President?",["November"],true],
+[28,"System of Government","What is the name of the President of the United States now?",[CURRENT.president],true],
+[29,"System of Government","What is the name of the Vice President of the United States now?",[CURRENT.vp],true],
+[30,"System of Government","If the President can no longer serve, who becomes President?",["the Vice President"],false],
+[31,"System of Government","If both the President and the Vice President can no longer serve, who becomes President?",["the Speaker of the House"],false],
+[32,"System of Government","Who is the Commander in Chief of the military?",["the President"],false],
+[33,"System of Government","Who signs bills to become laws?",["the President"],false],
+[34,"System of Government","Who vetoes bills?",["the President"],false],
+[35,"System of Government","What does the President's Cabinet do?",["advises the President"],false],
+[36,"System of Government","What are two Cabinet-level positions?",["Secretary of Agriculture","Secretary of Commerce","Secretary of Defense","Secretary of Education","Secretary of Energy","Secretary of Health and Human Services","Secretary of Homeland Security","Secretary of Housing and Urban Development","Secretary of the Interior","Secretary of Labor","Secretary of State","Secretary of Transportation","Secretary of the Treasury","Secretary of Veterans Affairs","Attorney General","Vice President"],false],
+[37,"System of Government","What does the judicial branch do?",["reviews laws","explains laws","resolves disputes (disagreements)","decides if a law goes against the Constitution"],false],
+[38,"System of Government","What is the highest court in the United States?",["the Supreme Court"],false],
+[39,"System of Government","How many justices are on the Supreme Court?",["nine (9)"],true],
+[40,"System of Government","Who is the Chief Justice of the United States now?",[CURRENT.chiefJustice],true],
+[41,"System of Government","Under our Constitution, some powers belong to the federal government. What is one power of the federal government?",["to print money","to declare war","to create an army","to make treaties"],false],
+[42,"System of Government","Under our Constitution, some powers belong to the states. What is one power of the states?",["provide schooling and education","provide protection (police)","provide safety (fire departments)","give a driver's license","approve zoning and land use"],false],
+[43,"System of Government","Who is the Governor of your state now?",["Answers vary by state"],false],
+[44,"System of Government","What is the capital of your state?",["Answers vary by state"],true],
+[45,"System of Government","What are the two major political parties in the United States?",["Democratic and Republican"],true],
+[46,"System of Government","What is the political party of the President now?",["Republican"],true],
+[47,"System of Government","What is the name of the Speaker of the House of Representatives now?",[CURRENT.speaker],true],
+[48,"Rights and Responsibilities","There are four amendments to the Constitution about who can vote. Describe one of them.",["Citizens 18 and older can vote.","You don't have to pay a poll tax to vote.","Any citizen can vote (women and men).","A male citizen of any race can vote."],false],
+[49,"Rights and Responsibilities","What is one responsibility that is only for United States citizens?",["serve on a jury","vote in a federal election"],true],
+[50,"Rights and Responsibilities","Name one right only for United States citizens.",["vote in a federal election","run for federal office"],false],
+[51,"Rights and Responsibilities","What are two rights of everyone living in the United States?",["freedom of expression","freedom of speech","freedom of assembly","freedom to petition the government","freedom of worship","the right to bear arms"],false],
+[52,"Rights and Responsibilities","What do we show loyalty to when we say the Pledge of Allegiance?",["the United States","the flag"],false],
+[53,"Rights and Responsibilities","What is one promise you make when you become a United States citizen?",["give up loyalty to other countries","defend the Constitution and laws of the United States","obey the laws of the United States","serve in the U.S. military (if needed)","serve the nation (if needed)","be loyal to the United States"],false],
+[54,"Rights and Responsibilities","How old do citizens have to be to vote for President?",["eighteen (18) and older"],false],
+[55,"Rights and Responsibilities","What are two ways that Americans can participate in their democracy?",["vote","join a political party","help with a campaign","join a civic group","join a community group","give an elected official your opinion","call Senators and Representatives","publicly support or oppose an issue","run for office","write to a newspaper"],false],
+[56,"Rights and Responsibilities","When is the last day you can send in federal income tax forms?",["April 15"],true],
+[57,"Rights and Responsibilities","When must all men register for the Selective Service?",["at age eighteen (18)","between eighteen (18) and twenty-six (26)"],false],
+[58,"Colonial Period and Independence","What is one reason colonists came to America?",["freedom","political liberty","religious freedom","economic opportunity","practice their religion","escape persecution"],false],
+[59,"Colonial Period and Independence","Who lived in America before the Europeans arrived?",["American Indians","Native Americans"],false],
+[60,"Colonial Period and Independence","What group of people was taken to America and sold as slaves?",["Africans","people from Africa"],false],
+[61,"Colonial Period and Independence","Why did the colonists fight the British?",["because of high taxes (taxation without representation)","because the British army stayed in their houses (boarding, quartering)","because they didn't have self-government"],false],
+[62,"Colonial Period and Independence","Who wrote the Declaration of Independence?",["(Thomas) Jefferson"],false],
+[63,"Colonial Period and Independence","When was the Declaration of Independence adopted?",["July 4, 1776"],false],
+[64,"Colonial Period and Independence","There were 13 original states. Name three.",["New Hampshire","Massachusetts","Rhode Island","Connecticut","New York","New Jersey","Pennsylvania","Delaware","Maryland","Virginia","North Carolina","South Carolina","Georgia"],false],
+[65,"Colonial Period and Independence","What happened at the Constitutional Convention?",["The Constitution was written.","The Founding Fathers wrote the Constitution."],false],
+[66,"Colonial Period and Independence","When was the Constitution written?",["1787"],false],
+[67,"Colonial Period and Independence","The Federalist Papers supported the passage of the U.S. Constitution. Name one of the writers.",["(James) Madison","(Alexander) Hamilton","(John) Jay","Publius"],false],
+[68,"Colonial Period and Independence","What is one thing Benjamin Franklin is famous for?",["U.S. diplomat","oldest member of the Constitutional Convention","first Postmaster General of the United States","writer of \"Poor Richard's Almanac\"","started the first free libraries"],false],
+[69,"Colonial Period and Independence","Who is the \"Father of Our Country\"?",["(George) Washington"],false],
+[70,"Colonial Period and Independence","Who was the first President?",["(George) Washington"],true],
+[71,"The 1800s","What territory did the United States buy from France in 1803?",["the Louisiana Territory","Louisiana"],false],
+[72,"The 1800s","Name one war fought by the United States in the 1800s.",["War of 1812","Mexican-American War","Civil War","Spanish-American War"],false],
+[73,"The 1800s","Name the U.S. war between the North and the South.",["the Civil War","the War between the States"],false],
+[74,"The 1800s","Name one problem that led to the Civil War.",["slavery","economic reasons","states' rights"],false],
+[75,"The 1800s","What was one important thing that Abraham Lincoln did?",["freed the slaves (Emancipation Proclamation)","saved (or preserved) the Union","led the United States during the Civil War"],false],
+[76,"The 1800s","What did the Emancipation Proclamation do?",["freed the slaves","freed slaves in the Confederacy","freed slaves in the Confederate states","freed slaves in most Southern states"],false],
+[77,"The 1800s","What did Susan B. Anthony do?",["fought for women's rights","fought for civil rights"],false],
+[78,"Recent American History","Name one war fought by the United States in the 1900s.",["World War I","World War II","Korean War","Vietnam War","(Persian) Gulf War"],true],
+[79,"Recent American History","Who was President during World War I?",["(Woodrow) Wilson"],false],
+[80,"Recent American History","Who was President during the Great Depression and World War II?",["(Franklin) Roosevelt"],false],
+[81,"Recent American History","Who did the United States fight in World War II?",["Japan, Germany, and Italy"],false],
+[82,"Recent American History","Before he was President, Eisenhower was a general. What war was he in?",["World War II"],false],
+[83,"Recent American History","During the Cold War, what was the main concern of the United States?",["Communism"],false],
+[84,"Recent American History","What movement tried to end racial discrimination?",["civil rights (movement)"],false],
+[85,"Recent American History","What did Martin Luther King, Jr. do?",["fought for civil rights","worked for equality for all Americans"],false],
+[86,"Recent American History","What major event happened on September 11, 2001, in the United States?",["Terrorists attacked the United States."],false],
+[87,"Recent American History","Name one American Indian tribe in the United States.",["Cherokee","Navajo","Sioux","Chippewa","Choctaw","Pueblo","Apache","Iroquois","Creek","Blackfeet","Seminole","Cheyenne","Arawak","Shawnee","Mohegan","Huron","Oneida","Lakota","Crow","Teton","Hopi","Inuit"],false],
+[88,"Geography","Name one of the two longest rivers in the United States.",["Missouri (River)","Mississippi (River)"],false],
+[89,"Geography","What ocean is on the West Coast of the United States?",["Pacific (Ocean)"],false],
+[90,"Geography","What ocean is on the East Coast of the United States?",["Atlantic (Ocean)"],false],
+[91,"Geography","Name one U.S. territory.",["Puerto Rico","U.S. Virgin Islands","American Samoa","Northern Mariana Islands","Guam"],false],
+[92,"Geography","Name one state that borders Canada.",["Maine","New Hampshire","Vermont","New York","Pennsylvania","Ohio","Michigan","Minnesota","North Dakota","Montana","Idaho","Washington","Alaska"],false],
+[93,"Geography","Name one state that borders Mexico.",["California","Arizona","New Mexico","Texas"],false],
+[94,"Geography","What is the capital of the United States?",["Washington, D.C."],false],
+[95,"Geography","Where is the Statue of Liberty?",["New York (Harbor)","Liberty Island","New Jersey","near New York City","on the Hudson (River)"],true],
+[96,"Symbols","Why does the flag have 13 stripes?",["because there were 13 original colonies","because the stripes represent the original colonies"],false],
+[97,"Symbols","Why does the flag have 50 stars?",["because there is one star for each state","because each star represents a state","because there are 50 states"],true],
+[98,"Symbols","What is the name of the national anthem?",["The Star-Spangled Banner"],false],
+[99,"Holidays","When do we celebrate Independence Day?",["July 4"],false],
+[100,"Holidays","Name two national U.S. holidays.",["New Year's Day","Martin Luther King, Jr. Day","Presidents' Day","Memorial Day","Juneteenth","Independence Day","Labor Day","Columbus Day","Veterans Day","Thanksgiving","Christmas"],false]
+  ]
+};
+
+const TEST_2025 = {
+  version: "2025",
+  label: "2025 Test (128 questions)",
+  totalAsked: 20,
+  passScore: 12,
+  failAt: 9,
+  questions: [
+[1,"Principles of American Government","What is the form of government of the United States?",["Republic","Constitution-based federal republic","Representative democracy"],false],
+[2,"Principles of American Government","What is the supreme law of the land?",["(U.S.) Constitution"],true],
+[3,"Principles of American Government","Name one thing the U.S. Constitution does.",["Forms the government","Defines powers of government","Defines the parts of government","Protects the rights of the people"],false],
+[4,"Principles of American Government","The U.S. Constitution starts with the words \"We the People.\" What does \"We the People\" mean?",["Self-government","Popular sovereignty","Consent of the governed","People should govern themselves"],false],
+[5,"Principles of American Government","How are changes made to the U.S. Constitution?",["Amendments","The amendment process"],false],
+[6,"Principles of American Government","What does the Bill of Rights protect?",["(The basic) rights of Americans","(The basic) rights of people living in the United States"],false],
+[7,"Principles of American Government","How many amendments does the U.S. Constitution have?",["Twenty-seven (27)"],true],
+[8,"Principles of American Government","Why is the Declaration of Independence important?",["It says America is free from British control.","It says all people are created equal.","It identifies inherent rights.","It identifies individual freedoms."],false],
+[9,"Principles of American Government","What founding document said the American colonies were free from Britain?",["Declaration of Independence"],false],
+[10,"Principles of American Government","Name two important ideas from the Declaration of Independence and the U.S. Constitution.",["Equality","Liberty","Social contract","Natural rights","Limited government","Self-government"],false],
+[11,"Principles of American Government","The words \"Life, Liberty, and the pursuit of Happiness\" are in what founding document?",["Declaration of Independence"],false],
+[12,"Principles of American Government","What is the economic system of the United States?",["Capitalism","Free market economy"],true],
+[13,"Principles of American Government","What is the rule of law?",["Everyone must follow the law.","Leaders must obey the law.","Government must obey the law.","No one is above the law."],false],
+[14,"Principles of American Government","Many documents influenced the U.S. Constitution. Name one.",["Declaration of Independence","Articles of Confederation","Federalist Papers","Anti-Federalist Papers","Virginia Declaration of Rights","Fundamental Orders of Connecticut","Mayflower Compact","Iroquois Great Law of Peace"],false],
+[15,"Principles of American Government","There are three branches of government. Why?",["So one part does not become too powerful","Checks and balances","Separation of powers"],false],
+[16,"System of Government","Name the three branches of government.",["Legislative, executive, and judicial","Congress, president, and the courts"],false],
+[17,"System of Government","The President of the United States is in charge of which branch of government?",["Executive branch"],false],
+[18,"System of Government","What part of the federal government writes laws?",["(U.S.) Congress","(U.S. or national) legislature","Legislative branch"],false],
+[19,"System of Government","What are the two parts of the U.S. Congress?",["Senate and House (of Representatives)"],false],
+[20,"System of Government","Name one power of the U.S. Congress.",["Writes laws","Declares war","Makes the federal budget"],true],
+[21,"System of Government","How many U.S. senators are there?",["One hundred (100)"],false],
+[22,"System of Government","How long is a term for a U.S. senator?",["Six (6) years"],false],
+[23,"System of Government","Who is one of your state's U.S. senators now?",["Answers vary by state — look up yours at senate.gov"],false],
+[24,"System of Government","How many voting members are in the House of Representatives?",["Four hundred thirty-five (435)"],false],
+[25,"System of Government","How long is a term for a member of the House of Representatives?",["Two (2) years"],false],
+[26,"System of Government","Why do U.S. representatives serve shorter terms than U.S. senators?",["To more closely follow public opinion"],false],
+[27,"System of Government","How many senators does each state have?",["Two (2)"],false],
+[28,"System of Government","Why does each state have two senators?",["Equal representation (for small states)","The Great Compromise (Connecticut Compromise)"],false],
+[29,"System of Government","Name your U.S. representative.",["Answers vary by district — look up yours at house.gov"],false],
+[30,"System of Government","What is the name of the Speaker of the House of Representatives now?",[CURRENT.speaker],true],
+[31,"System of Government","Who does a U.S. senator represent?",["Citizens of their state","People of their state"],false],
+[32,"System of Government","Who elects U.S. senators?",["Citizens from their state"],false],
+[33,"System of Government","Who does a member of the House of Representatives represent?",["Citizens in their (congressional) district","People from their (congressional) district"],false],
+[34,"System of Government","Who elects members of the House of Representatives?",["Citizens from their (congressional) district"],false],
+[35,"System of Government","Some states have more representatives than other states. Why?",["(Because of) the state's population","(Because) they have more people"],false],
+[36,"System of Government","The President of the United States is elected for how many years?",["Four (4) years"],true],
+[37,"System of Government","The President of the United States can serve only two terms. Why?",["(Because of) the 22nd Amendment","To keep the president from becoming too powerful"],false],
+[38,"System of Government","What is the name of the President of the United States now?",[CURRENT.president],true],
+[39,"System of Government","What is the name of the Vice President of the United States now?",[CURRENT.vp],true],
+[40,"System of Government","If the president can no longer serve, who becomes president?",["The Vice President (of the United States)"],false],
+[41,"System of Government","Name one power of the president.",["Signs bills into law","Vetoes bills","Enforces laws","Commander in Chief (of the military)","Chief diplomat","Appoints federal judges"],false],
+[42,"System of Government","Who is Commander in Chief of the U.S. military?",["The President (of the United States)"],false],
+[43,"System of Government","Who signs bills to become laws?",["The President (of the United States)"],false],
+[44,"System of Government","Who vetoes bills?",["The President (of the United States)"],true],
+[45,"System of Government","Who appoints federal judges?",["The President (of the United States)"],false],
+[46,"System of Government","The executive branch has many parts. Name one.",["President (of the United States)","Cabinet","Federal departments and agencies"],false],
+[47,"System of Government","What does the President's Cabinet do?",["Advises the President (of the United States)"],false],
+[48,"System of Government","What are two Cabinet-level positions?",["Attorney General","Secretary of Agriculture","Secretary of Commerce","Secretary of Defense","Secretary of Education","Secretary of Energy","Secretary of Health and Human Services","Secretary of Homeland Security","Secretary of Housing and Urban Development","Secretary of the Interior","Secretary of Labor","Secretary of State","Secretary of Transportation","Secretary of the Treasury","Secretary of Veterans Affairs","Vice President (of the United States)"],false],
+[49,"System of Government","Why is the Electoral College important?",["It decides who is elected president.","It provides a compromise between the popular election of the president and congressional selection."],false],
+[50,"System of Government","What is one part of the judicial branch?",["Supreme Court","Federal Courts"],false],
+[51,"System of Government","What does the judicial branch do?",["Reviews laws","Explains laws","Resolves disputes (disagreements) about the law","Decides if a law goes against the (U.S.) Constitution"],false],
+[52,"System of Government","What is the highest court in the United States?",["Supreme Court"],true],
+[53,"System of Government","How many seats are on the Supreme Court?",["Nine (9)"],false],
+[54,"System of Government","How many Supreme Court justices are usually needed to decide a case?",["Five (5)"],false],
+[55,"System of Government","How long do Supreme Court justices serve?",["(For) life","Lifetime appointment","(Until) retirement"],false],
+[56,"System of Government","Supreme Court justices serve for life. Why?",["To be independent (of politics)","To limit outside (political) influence"],false],
+[57,"System of Government","Who is the Chief Justice of the United States now?",[CURRENT.chiefJustice],false],
+[58,"System of Government","Name one power that is only for the federal government.",["Print paper money","Mint coins","Declare war","Create an army","Make treaties","Set foreign policy"],false],
+[59,"System of Government","Name one power that is only for the states.",["Provide schooling and education","Provide protection (police)","Provide safety (fire departments)","Give a driver's license","Approve zoning and land use"],false],
+[60,"System of Government","What is the purpose of the 10th Amendment?",["(It states that the) powers not given to the federal government belong to the states or to the people."],false],
+[61,"System of Government","Who is the governor of your state now?",["Answers vary by state"],true],
+[62,"System of Government","What is the capital of your state?",["Answers vary by state"],false],
+[63,"Rights and Responsibilities","There are four amendments to the U.S. Constitution about who can vote. Describe one of them.",["Citizens eighteen (18) and older can vote.","You don't have to pay a poll tax to vote.","Any citizen can vote (women and men).","A male citizen of any race can vote."],false],
+[64,"Rights and Responsibilities","Who can vote in federal elections, run for federal office, and serve on a jury in the United States?",["Citizens","Citizens of the United States","U.S. citizens"],false],
+[65,"Rights and Responsibilities","What are three rights of everyone living in the United States?",["Freedom of expression","Freedom of speech","Freedom of assembly","Freedom to petition the government","Freedom of religion","The right to bear arms"],false],
+[66,"Rights and Responsibilities","What do we show loyalty to when we say the Pledge of Allegiance?",["The United States","The flag"],true],
+[67,"Rights and Responsibilities","Name two promises that new citizens make in the Oath of Allegiance.",["Give up loyalty to other countries","Defend the (U.S.) Constitution","Obey the laws of the United States","Serve in the military (if needed)","Be loyal to the United States"],false],
+[68,"Rights and Responsibilities","How can people become United States citizens?",["Be born in the United States, under the conditions set by the 14th Amendment","Naturalize","Derive citizenship (under conditions set by Congress)"],false],
+[69,"Rights and Responsibilities","What are two examples of civic participation in the United States?",["Vote","Run for office","Join a political party","Help with a campaign","Join a civic group","Join a community group","Contact elected officials","Write to a newspaper"],false],
+[70,"Rights and Responsibilities","What is one way Americans can serve their country?",["Vote","Pay taxes","Obey the law","Serve in the military","Run for office","Work for local, state, or federal government"],false],
+[71,"Rights and Responsibilities","Why is it important to pay federal taxes?",["Required by law","All people pay to fund the federal government","Required by the (U.S.) Constitution (16th Amendment)","Civic duty"],false],
+[72,"Rights and Responsibilities","It is important for all men age 18 through 25 to register for the Selective Service. Name one reason why.",["Required by law","Civic duty","Makes the draft fair, if needed"],false],
+[73,"Colonial Period and Independence","The colonists came to America for many reasons. Name one.",["Freedom","Political liberty","Religious freedom","Economic opportunity","Escape persecution"],false],
+[74,"Colonial Period and Independence","Who lived in America before the Europeans arrived?",["American Indians","Native Americans"],true],
+[75,"Colonial Period and Independence","What group of people was taken and sold as slaves?",["Africans","People from Africa"],false],
+[76,"Colonial Period and Independence","What war did the Americans fight to win independence from Britain?",["American Revolution","The (American) Revolutionary War","War for (American) Independence"],false],
+[77,"Colonial Period and Independence","Name one reason why the Americans declared independence from Britain.",["High taxes","Taxation without representation","British soldiers stayed in Americans' houses (boarding, quartering)","They did not have self-government","Boston Massacre","Boston Tea Party (Tea Act)"],false],
+[78,"Colonial Period and Independence","Who wrote the Declaration of Independence?",["(Thomas) Jefferson"],true],
+[79,"Colonial Period and Independence","When was the Declaration of Independence adopted?",["July 4, 1776"],false],
+[80,"Colonial Period and Independence","The American Revolution had many important events. Name one.",["(Battle of) Bunker Hill","Declaration of Independence","Washington Crossing the Delaware (Battle of Trenton)","(Battle of) Saratoga","Valley Forge (Encampment)","(Battle of) Yorktown (British surrender at Yorktown)"],false],
+[81,"Colonial Period and Independence","There were 13 original states. Name five.",["New Hampshire","Massachusetts","Rhode Island","Connecticut","New York","New Jersey","Pennsylvania","Delaware","Maryland","Virginia","North Carolina","South Carolina","Georgia"],false],
+[82,"Colonial Period and Independence","What founding document was written in 1787?",["(U.S.) Constitution"],false],
+[83,"Colonial Period and Independence","The Federalist Papers supported the passage of the U.S. Constitution. Name one of the writers.",["(James) Madison","(Alexander) Hamilton","(John) Jay","Publius"],false],
+[84,"Colonial Period and Independence","Why were the Federalist Papers important?",["They helped people understand the (U.S.) Constitution.","They supported passing the (U.S.) Constitution."],false],
+[85,"Colonial Period and Independence","Benjamin Franklin is famous for many things. Name one.",["Founded the first free public libraries","First Postmaster General of the United States","Helped write the Declaration of Independence","Inventor","U.S. diplomat"],false],
+[86,"Colonial Period and Independence","George Washington is famous for many things. Name one.",["\"Father of Our Country\"","First president of the United States","General of the Continental Army","President of the Constitutional Convention"],true],
+[87,"Colonial Period and Independence","Thomas Jefferson is famous for many things. Name one.",["Writer of the Declaration of Independence","Third president of the United States","Doubled the size of the United States (Louisiana Purchase)","First Secretary of State","Founded the University of Virginia"],false],
+[88,"Colonial Period and Independence","James Madison is famous for many things. Name one.",["\"Father of the Constitution\"","Fourth president of the United States","President during the War of 1812","One of the writers of the Federalist Papers"],false],
+[89,"Colonial Period and Independence","Alexander Hamilton is famous for many things. Name one.",["First Secretary of the Treasury","One of the writers of the Federalist Papers","Helped establish the First Bank of the United States","Aide to General George Washington"],false],
+[90,"The 1800s","What territory did the United States buy from France in 1803?",["Louisiana Territory","Louisiana"],false],
+[91,"The 1800s","Name one war fought by the United States in the 1800s.",["War of 1812","Mexican-American War","Civil War","Spanish-American War"],false],
+[92,"The 1800s","Name the U.S. war between the North and the South.",["The Civil War"],false],
+[93,"The 1800s","The Civil War had many important events. Name one.",["(Battle of) Fort Sumter","Emancipation Proclamation","(Battle of) Vicksburg","(Battle of) Gettysburg","Sherman's March","(Surrender at) Appomattox","Lincoln was assassinated."],false],
+[94,"The 1800s","Abraham Lincoln is famous for many things. Name one.",["Freed the slaves (Emancipation Proclamation)","Saved (or preserved) the Union","Led the United States during the Civil War","16th president of the United States","Delivered the Gettysburg Address"],true],
+[95,"The 1800s","What did the Emancipation Proclamation do?",["Freed the slaves","Freed slaves in the Confederacy","Freed slaves in the Confederate states","Freed slaves in most Southern states"],false],
+[96,"The 1800s","What U.S. war ended slavery?",["The Civil War"],false],
+[97,"The 1800s","What amendment says all persons born or naturalized in the United States, and subject to the jurisdiction thereof, are U.S. citizens?",["14th Amendment"],false],
+[98,"The 1800s","When did all men get the right to vote?",["After the Civil War","During Reconstruction","(With the) 15th Amendment","1870"],false],
+[99,"The 1800s","Name one leader of the women's rights movement in the 1800s.",["Susan B. Anthony","Elizabeth Cady Stanton","Sojourner Truth","Harriet Tubman","Lucretia Mott","Lucy Stone"],false],
+[100,"Recent History","Name one war fought by the United States in the 1900s.",["World War I","World War II","Korean War","Vietnam War","(Persian) Gulf War"],false],
+[101,"Recent History","Why did the United States enter World War I?",["Because Germany attacked U.S. (civilian) ships","To support the Allied Powers","To oppose the Central Powers"],false],
+[102,"Recent History","When did all women get the right to vote?",["1920","After World War I","(With the) 19th Amendment"],false],
+[103,"Recent History","What was the Great Depression?",["Longest economic recession in modern history"],false],
+[104,"Recent History","When did the Great Depression start?",["The Great Crash (1929)","Stock market crash of 1929"],false],
+[105,"Recent History","Who was president during the Great Depression and World War II?",["(Franklin) Roosevelt"],false],
+[106,"Recent History","Why did the United States enter World War II?",["(Bombing of) Pearl Harbor","Japanese attacked Pearl Harbor","To support the Allied Powers","To oppose the Axis Powers"],false],
+[107,"Recent History","Dwight Eisenhower is famous for many things. Name one.",["General during World War II","President at the end of (during) the Korean War","34th president of the United States","Signed the Federal-Aid Highway Act of 1956"],false],
+[108,"Recent History","Who was the United States' main rival during the Cold War?",["Soviet Union","USSR","Russia"],false],
+[109,"Recent History","During the Cold War, what was one main concern of the United States?",["Communism","Nuclear war"],false],
+[110,"Recent History","Why did the United States enter the Korean War?",["To stop the spread of communism"],false],
+[111,"Recent History","Why did the United States enter the Vietnam War?",["To stop the spread of communism"],false],
+[112,"Recent History","What did the civil rights movement do?",["Fought to end racial discrimination"],false],
+[113,"Recent History","Martin Luther King, Jr. is famous for many things. Name one.",["Fought for civil rights","Worked for equality for all Americans","Worked to ensure people would \"not be judged by the color of their skin, but by the content of their character\""],true],
+[114,"Recent History","Why did the United States enter the Persian Gulf War?",["To force the Iraqi military from Kuwait"],false],
+[115,"Recent History","What major event happened on September 11, 2001 in the United States?",["Terrorists attacked the United States","Terrorists took over two planes and crashed them into the World Trade Center in New York City","Terrorists took over a plane and crashed into the Pentagon","Terrorists took over a plane that crashed in a field in Pennsylvania"],true],
+[116,"Recent History","Name one U.S. military conflict after the September 11, 2001 attacks.",["(Global) War on Terror","War in Afghanistan","War in Iraq"],false],
+[117,"Recent History","Name one American Indian tribe in the United States.",["Apache","Blackfeet","Cayuga","Cherokee","Cheyenne","Chippewa","Choctaw","Creek","Crow","Hopi","Huron","Inupiat","Lakota","Mohawk","Mohegan","Navajo","Oneida","Onondaga","Pueblo","Seminole","Seneca","Shawnee","Sioux","Teton","Tuscarora"],false],
+[118,"Recent History","Name one example of an American innovation.",["Light bulb","Automobile (cars, combustible engine)","Skyscrapers","Airplane","Assembly line","Landing on the moon","Integrated circuit (IC)"],false],
+[119,"American Symbols","What is the capital of the United States?",["Washington, D.C."],false],
+[120,"American Symbols","Where is the Statue of Liberty?",["New York (Harbor)","Liberty Island","New Jersey","near New York City","on the Hudson (River)"],false],
+[121,"American Symbols","Why does the flag have 13 stripes?",["(Because there were) 13 original colonies","(Because the stripes) represent the original colonies"],true],
+[122,"American Symbols","Why does the flag have 50 stars?",["(Because there is) one star for each state","(Because) each star represents a state","(Because there are) 50 states"],false],
+[123,"American Symbols","What is the name of the national anthem?",["The Star-Spangled Banner"],false],
+[124,"American Symbols","The Nation's first motto was \"E Pluribus Unum.\" What does that mean?",["Out of many, one","We all become one"],false],
+[125,"National Holidays","What is Independence Day?",["A holiday to celebrate U.S. independence (from Britain)","The country's birthday"],false],
+[126,"National Holidays","Name three national U.S. holidays.",["New Year's Day","Martin Luther King, Jr. Day","Presidents Day (Washington's Birthday)","Memorial Day","Independence Day","Labor Day","Columbus Day","Veterans Day","Thanksgiving Day","Christmas Day"],true],
+[127,"National Holidays","What is Memorial Day?",["A holiday to honor soldiers who died in military service"],false],
+[128,"National Holidays","What is Veterans Day?",["A holiday to honor people in the (U.S.) military","A holiday to honor people who have served (in the U.S. military)"],false]
+  ]
+};
+
+</script>
+<script>
+// ============================================================
+// App state
+// ============================================================
+let state = {
+  version: '2008',
+  tab: 'study',
+  study: { category: 'All', index: 0, flipped: false, order: [] },
+  quiz: { setup: true, size: 10, order: [], index: 0, correct: 0, wrong: 0, answered: false, missed: [] },
+  interview: { setup: true, order: [], index: 0, correct: 0, wrong: 0, finished:false, missed:[], revealed:false },
+};
+
+function getTest(){ return state.version === '2008' ? TEST_2008 : TEST_2025; }
+function getCategories(){
+  const t = getTest();
+  const cats = [];
+  t.questions.forEach(q=>{ if(!cats.includes(q[1])) cats.push(q[1]); });
+  return cats;
+}
+function shuffledIndices(n){
+  const arr = Array.from({length:n}, (_,i)=>i);
+  for(let i=arr.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]]=[arr[j],arr[i]];
+  }
+  return arr;
+}
+
+// ============================================================
+// Persistent storage (window.storage) — best effort
+// ============================================================
+const STORAGE_KEY = 'civics-app-progress-v1';
+let progress = { history: [], missedIds: {} }; // missedIds keyed by "version:id"
+
+async function loadProgress(){
+  try{
+    const res = await window.storage.get(STORAGE_KEY, false);
+    if(res && res.value){ progress = JSON.parse(res.value); }
+  }catch(e){ /* no saved data yet, or storage unavailable */ }
+}
+async function saveProgress(){
+  try{ await window.storage.set(STORAGE_KEY, JSON.stringify(progress), false); }catch(e){}
+}
+function markMissed(version, id, isMissed){
+  const key = version+':'+id;
+  if(isMissed) progress.missedIds[key] = true;
+  else delete progress.missedIds[key];
+}
+function recordAttempt(mode, version, correct, total, passed){
+  progress.history.unshift({ mode, version, correct, total, passed, date: new Date().toISOString() });
+  progress.history = progress.history.slice(0, 40);
+  saveProgress();
+}
+
+// ============================================================
+// Nav
+// ============================================================
+function setVersion(v){
+  state.version = v;
+  state.study = { category:'All', index:0, flipped:false, order:[] };
+  state.quiz = { setup:true, size:10, order:[], index:0, correct:0, wrong:0, answered:false, missed:[] };
+  state.interview = { setup:true, order:[], index:0, correct:0, wrong:0, finished:false, missed:[], revealed:false };
+  render();
+}
+function setTab(t){ state.tab = t; render(); }
+
+// ============================================================
+// Master render
+// ============================================================
+function render(){
+  document.getElementById('btn-v2008').classList.toggle('active', state.version==='2008');
+  document.getElementById('btn-v2025').classList.toggle('active', state.version==='2025');
+  const t = getTest();
+  document.getElementById('version-note').textContent =
+    `${t.totalAsked} asked in interview · need ${t.passScore} correct to pass`;
+  document.getElementById('asof').textContent = CURRENT.asOf;
+
+  document.querySelectorAll('.tab-btn').forEach(b=>{
+    b.classList.toggle('active', b.dataset.tab === state.tab);
+  });
+
+  const c = document.getElementById('content');
+  if(state.tab==='study') renderStudy(c);
+  else if(state.tab==='quiz') renderQuiz(c);
+  else if(state.tab==='interview') renderInterview(c);
+  else if(state.tab==='missed') renderMissed(c);
+  else if(state.tab==='stats') renderStats(c);
+}
+
+function officeholderBanner(){
+  return `<div class="banner"><b>Current officeholder answers</b> (verify before your interview at uscis.gov/citizenship/testupdates):
+  President — ${CURRENT.president} · Vice President — ${CURRENT.vp} · Speaker of the House — ${CURRENT.speaker} · Chief Justice — ${CURRENT.chiefJustice}</div>`;
+}
+
+// ============================================================
+// STUDY (flashcards)
+// ============================================================
+function renderStudy(c){
+  const t = getTest();
+  const cats = ['All', ...getCategories()];
+  const list = t.questions.filter(q => state.study.category==='All' || q[1]===state.study.category);
+  if(state.study.order.length !== list.length){
+    state.study.order = shuffledIndices(list.length);
+    state.study.index = 0;
+    state.study.flipped = false;
+  }
+  const idx = state.study.order[state.study.index] ?? 0;
+  const q = list[idx];
+
+  let html = `<h2>Study Flashcards</h2>
+  <p class="doc-sub">${t.label} · flip each card to see the accepted answer(s)</p>`;
+  html += officeholderBanner();
+  html += `<div class="category-scroller">`;
+  cats.forEach(cat=>{
+    html += `<div class="cat-pill ${state.study.category===cat?'active':''}" onclick="selectCategory('${cat.replace(/'/g,"\\'")}')">${cat}</div>`;
+  });
+  html += `</div>`;
+
+  if(!q){
+    html += `<p class="empty-note">No questions in this category.</p>`;
+  } else {
+    html += `<div class="flashcard" onclick="flipCard()">
+      <span class="qnum">Q${q[0]}${q[4]?' *':''}</span>
+      ${state.study.flipped ? '' : `<div class="qtext">${escapeHtml(q[2])}</div><div class="hint">Tap to reveal answer</div>`}
+      ${state.study.flipped ? `<div class="qtext" style="font-size:1rem;color:var(--ink-soft);margin-bottom:14px;">${escapeHtml(q[2])}</div><div class="atext">${q[3].map(escapeHtml).join(' &nbsp;/&nbsp; ')}</div><div class="hint">Tap to flip back</div>` : ''}
+    </div>
+    <div class="flash-controls">
+      <button class="nav-btn ghost" onclick="event.stopPropagation(); prevCard()" ${state.study.index===0?'disabled':''}>&larr; Prev</button>
+      <div class="flash-progress">${state.study.index+1} / ${list.length}</div>
+      <button class="nav-btn" onclick="event.stopPropagation(); nextCard()">Next &rarr;</button>
+    </div>`;
+  }
+  c.innerHTML = html;
+}
+function selectCategory(cat){
+  state.study.category = cat;
+  state.study.order = [];
+  state.study.index = 0;
+  state.study.flipped = false;
+  render();
+}
+function flipCard(){ state.study.flipped = !state.study.flipped; render(); }
+function nextCard(){
+  const t = getTest();
+  const list = t.questions.filter(q => state.study.category==='All' || q[1]===state.study.category);
+  state.study.index = (state.study.index+1) % list.length;
+  state.study.flipped = false;
+  render();
+}
+function prevCard(){
+  if(state.study.index>0){ state.study.index--; state.study.flipped=false; render(); }
+}
+
+// ============================================================
+// QUICK QUIZ (multiple choice, auto-graded)
+// ============================================================
+function renderQuiz(c){
+  const t = getTest();
+  const qz = state.quiz;
+  if(qz.setup){
+    let html = `<h2>Quick Quiz</h2><p class="doc-sub">Multiple choice, auto-graded — good for fast drilling.</p>`;
+    html += officeholderBanner();
+    html += `<div class="setup-grid">`;
+    [10,20,40,t.questions.length].forEach(n=>{
+      const label = n===t.questions.length ? `All ${n}` : `${n} questions`;
+      html += `<div class="setup-card ${qz.size===n?'selected':''}" onclick="setQuizSize(${n})">
+        <h3>${label}</h3><p>Random selection from ${t.label}</p></div>`;
+    });
+    html += `</div><button class="start-btn" onclick="startQuiz()">Start Quiz</button>`;
+    c.innerHTML = html;
+    return;
+  }
+
+  if(qz.index >= qz.order.length){
+    renderQuizResults(c);
+    return;
+  }
+
+  const qData = t.questions[qz.order[qz.index]];
+  const correctAnswer = qData[3][0];
+  if(!qz.options){
+    qz.options = buildOptions(t, qz.order[qz.index]);
+  }
+
+  let html = `<h2>Quick Quiz</h2>`;
+  html += `<div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:${(qz.index/qz.order.length*100)}%"></div></div>`;
+  html += `<div class="tally"><span>Question <b>${qz.index+1}</b> / ${qz.order.length}</span><span>Correct <b>${qz.correct}</b></span><span>Wrong <b>${qz.wrong}</b></span></div>`;
+  html += `<div class="qbox"><span class="qnum-badge">Q${qData[0]} · ${qData[1]}</span><div class="qtext">${escapeHtml(qData[2])}</div></div>`;
+  html += `<div class="mc-options">`;
+  qz.options.forEach((opt,i)=>{
+    let cls = 'mc-option';
+    if(qz.answered){
+      cls += ' disabled';
+      if(opt===correctAnswer) cls += ' correct';
+      else if(opt===qz.picked && opt!==correctAnswer) cls += ' incorrect';
+    }
+    html += `<div class="${cls}" onclick="${qz.answered?'':'pickOption("'+encodeURIComponent(opt)+'")'}">${escapeHtml(opt)}</div>`;
+  });
+  html += `</div>`;
+  if(qz.answered){
+    html += `<div style="margin-top:16px;text-align:right;"><button class="nav-btn" onclick="nextQuizQuestion()">${qz.index+1>=qz.order.length?'See Results':'Next Question'} &rarr;</button></div>`;
+  }
+  c.innerHTML = html;
+}
+function buildOptions(t, qIdx){
+  const qData = t.questions[qIdx];
+  const correct = qData[3][0];
+  const pool = t.questions.filter((q,i)=> i!==qIdx).map(q=>q[3][0]);
+  const distractors = [];
+  const shuffledPool = pool.sort(()=>Math.random()-0.5);
+  for(const p of shuffledPool){
+    if(distractors.length>=3) break;
+    if(p!==correct && !distractors.includes(p)) distractors.push(p);
+  }
+  const options = [correct, ...distractors];
+  return options.sort(()=>Math.random()-0.5);
+}
+function setQuizSize(n){ state.quiz.size = n; render(); }
+function startQuiz(){
+  const t = getTest();
+  const order = shuffledIndices(t.questions.length).slice(0, state.quiz.size);
+  state.quiz = { setup:false, size:state.quiz.size, order, index:0, correct:0, wrong:0, answered:false, missed:[], options:null };
+  render();
+}
+function pickOption(encoded){
+  const opt = decodeURIComponent(encoded);
+  const t = getTest();
+  const qData = t.questions[state.quiz.order[state.quiz.index]];
+  const correct = qData[3][0];
+  state.quiz.picked = opt;
+  state.quiz.answered = true;
+  if(opt===correct) state.quiz.correct++;
+  else { state.quiz.wrong++; state.quiz.missed.push(qData); }
+  render();
+}
+function nextQuizQuestion(){
+  state.quiz.index++;
+  state.quiz.answered = false;
+  state.quiz.picked = null;
+  state.quiz.options = null;
+  if(state.quiz.index >= state.quiz.order.length){
+    const total = state.quiz.order.length;
+    const passed = state.quiz.correct >= Math.ceil(total*0.6);
+    recordAttempt('Quick Quiz', state.version, state.quiz.correct, total, passed);
+    state.quiz.missed.forEach(q=> markMissed(state.version, q[0], true));
+    saveProgress();
+  }
+  render();
+}
+function renderQuizResults(c){
+  const qz = state.quiz;
+  const total = qz.order.length;
+  const pct = Math.round((qz.correct/total)*100);
+  const passed = qz.correct >= Math.ceil(total*0.6);
+  let html = `<h2>Quiz Results</h2>
+  <div class="result-hero">
+    <div class="big ${passed?'pass':'fail'}">${qz.correct} / ${total}</div>
+    <div class="verdict ${passed?'pass':'fail'}">${passed?'Nice work — solid pass':'Keep studying — review missed questions'}</div>
+    <p class="doc-sub">${pct}% correct</p>
+  </div>`;
+  if(qz.missed.length){
+    html += `<div class="missed-list"><h3 style="font-family:'Source Serif 4',serif;color:var(--navy);">Missed this round</h3>`;
+    qz.missed.forEach(q=>{
+      html += `<div class="missed-item"><div class="q">${escapeHtml(q[2])}</div><div class="a">${q[3].map(escapeHtml).join(' / ')}</div></div>`;
+    });
+    html += `</div>`;
+  }
+  html += `<button class="start-btn" onclick="restartQuiz()">Take Another Quiz</button>`;
+  c.innerHTML = html;
+}
+function restartQuiz(){ state.quiz = { setup:true, size:state.quiz.size, order:[], index:0, correct:0, wrong:0, answered:false, missed:[] }; render(); }
+
+// ============================================================
+// MOCK INTERVIEW (authentic self-graded oral-style simulation)
+// ============================================================
+function renderInterview(c){
+  const t = getTest();
+  const iv = state.interview;
+  if(iv.setup){
+    let html = `<h2>Mock Interview</h2>
+    <p class="doc-sub">Simulates the real oral test: random questions, self-graded (say your answer out loud, then reveal), and stops early exactly like a USCIS officer would.</p>`;
+    html += officeholderBanner();
+    html += `<div class="setup-card selected" style="max-width:420px;">
+      <h3>${t.label}</h3>
+      <p>Officer asks up to ${t.totalAsked} questions · needs ${t.passScore} correct to pass · fails at ${t.failAt} wrong</p>
+    </div>`;
+    html += `<button class="start-btn" onclick="startInterview()">Begin Mock Interview</button>`;
+    c.innerHTML = html;
+    return;
+  }
+  if(iv.finished){
+    renderInterviewResults(c);
+    return;
+  }
+  const qData = t.questions[iv.order[iv.index]];
+  let html = `<h2>Mock Interview</h2>`;
+  html += `<div class="tally"><span>Asked <b>${iv.index+1}</b> / up to ${t.totalAsked}</span><span>Correct <b>${iv.correct}</b> (need ${t.passScore})</span><span>Wrong <b>${iv.wrong}</b> (fails at ${t.failAt})</span></div>`;
+  html += `<div class="qbox"><span class="qnum-badge">Q${qData[0]} · ${qData[1]}</span><div class="qtext">${escapeHtml(qData[2])}${qData[4]?' <span style="color:var(--red);font-size:0.8rem;">*</span>':''}</div></div>`;
+  if(!iv.revealed){
+    html += `<p class="doc-sub">Answer out loud as if speaking to the officer, then reveal.</p>
+    <button class="nav-btn" onclick="revealInterviewAnswer()">Reveal Accepted Answer</button>`;
+  } else {
+    html += `<div class="reveal-box"><b>Accepted answer${qData[3].length>1?'s':''}:</b> ${qData[3].map(escapeHtml).join(' / ')}</div>
+    <div class="self-grade">
+      <button class="grade-btn grade-yes" onclick="gradeInterview(true)">I got it right</button>
+      <button class="grade-btn grade-no" onclick="gradeInterview(false)">I got it wrong</button>
+    </div>`;
+  }
+  c.innerHTML = html;
+}
+function startInterview(){
+  const t = getTest();
+  const order = shuffledIndices(t.questions.length);
+  state.interview = { setup:false, order, index:0, correct:0, wrong:0, finished:false, missed:[], revealed:false };
+  render();
+}
+function revealInterviewAnswer(){ state.interview.revealed = true; render(); }
+function gradeInterview(correct){
+  const t = getTest();
+  const iv = state.interview;
+  const qData = t.questions[iv.order[iv.index]];
+  if(correct) iv.correct++;
+  else { iv.wrong++; iv.missed.push(qData); }
+  iv.index++;
+  iv.revealed = false;
+
+  const passed = iv.correct >= t.passScore;
+  const failed = iv.wrong >= t.failAt;
+  const outOfQuestions = iv.index >= t.totalAsked || iv.index >= iv.order.length;
+
+  if(passed || failed || outOfQuestions){
+    iv.finished = true;
+    iv.passed = passed && !failed;
+    recordAttempt('Mock Interview', state.version, iv.correct, iv.correct+iv.wrong, iv.passed);
+    iv.missed.forEach(q=> markMissed(state.version, q[0], true));
+    saveProgress();
+  }
+  render();
+}
+function renderInterviewResults(c){
+  const iv = state.interview;
+  const t = getTest();
+  let html = `<h2>Mock Interview Result</h2>
+  <div class="result-hero">
+    <div class="big ${iv.passed?'pass':'fail'}">${iv.correct} correct / ${iv.wrong} wrong</div>
+    <div class="verdict ${iv.passed?'pass':'fail'}">${iv.passed? 'PASSED — the officer would stop here' : 'Did not pass this round'}</div>
+    <p class="doc-sub">${t.label} · needed ${t.passScore} correct, failed at ${t.failAt} wrong</p>
+  </div>`;
+  if(iv.missed.length){
+    html += `<div class="missed-list"><h3 style="font-family:'Source Serif 4',serif;color:var(--navy);">Missed this round</h3>`;
+    iv.missed.forEach(q=>{
+      html += `<div class="missed-item"><div class="q">${escapeHtml(q[2])}</div><div class="a">${q[3].map(escapeHtml).join(' / ')}</div></div>`;
+    });
+    html += `</div>`;
+  }
+  html += `<button class="start-btn" onclick="restartInterview()">Take Another Mock Interview</button>`;
+  c.innerHTML = html;
+}
+function restartInterview(){ state.interview = { setup:true, order:[], index:0, correct:0, wrong:0, finished:false, missed:[], revealed:false }; render(); }
+
+// ============================================================
+// MISSED QUESTIONS
+// ============================================================
+function renderMissed(c){
+  const t = getTest();
+  const missedIds = Object.keys(progress.missedIds)
+    .filter(k=>k.startsWith(state.version+':'))
+    .map(k=>parseInt(k.split(':')[1],10));
+  const items = t.questions.filter(q=>missedIds.includes(q[0]));
+
+  let html = `<h2>Missed Questions</h2><p class="doc-sub">Questions you've gotten wrong in Quick Quiz or Mock Interview for ${t.label}. Review these, then clear them once you've got them down.</p>`;
+  if(!items.length){
+    html += `<p class="empty-note">No missed questions yet for this test version — nice. Take a quiz or mock interview to build this list.</p>`;
+  } else {
+    html += `<div style="margin-bottom:14px;"><button class="nav-btn ghost" onclick="clearMissed()">Clear this list</button></div>`;
+    html += `<div class="missed-list">`;
+    items.forEach(q=>{
+      html += `<div class="missed-item"><div class="q">Q${q[0]}. ${escapeHtml(q[2])}</div><div class="a">${q[3].map(escapeHtml).join(' / ')}</div></div>`;
+    });
+    html += `</div>`;
+  }
+  c.innerHTML = html;
+}
+function clearMissed(){
+  Object.keys(progress.missedIds).forEach(k=>{
+    if(k.startsWith(state.version+':')) delete progress.missedIds[k];
+  });
+  saveProgress();
+  render();
+}
+
+// ============================================================
+// STATS
+// ============================================================
+function renderStats(c){
+  const attempts = progress.history;
+  const best = attempts.reduce((m,a)=> Math.max(m, a.total? Math.round(a.correct/a.total*100):0), 0);
+  const passedCount = attempts.filter(a=>a.passed).length;
+  let html = `<h2>Progress</h2><p class="doc-sub">Saved automatically across visits.</p>`;
+  html += `<div class="stat-grid">
+    <div class="stat-box"><div class="num">${attempts.length}</div><div class="lbl">Attempts</div></div>
+    <div class="stat-box"><div class="num">${best}%</div><div class="lbl">Best Score</div></div>
+    <div class="stat-box"><div class="num">${passedCount}</div><div class="lbl">Times Passed</div></div>
+  </div>`;
+  if(!attempts.length){
+    html += `<p class="empty-note">No attempts recorded yet. Try a Quick Quiz or Mock Interview.</p>`;
+  } else {
+    html += `<div>`;
+    attempts.slice(0,15).forEach(a=>{
+      const d = new Date(a.date);
+      html += `<div class="history-row">
+        <span>${a.mode} · ${a.version} test</span>
+        <span>${a.correct}/${a.total} ${a.passed?'✓ pass':'✗'}</span>
+        <span style="color:var(--ink-soft);">${d.toLocaleDateString()}</span>
+      </div>`;
+    });
+    html += `</div>`;
+  }
+  c.innerHTML = html;
+}
+
+// ============================================================
+// Utility
+// ============================================================
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+// ============================================================
+// Boot
+// ============================================================
+(async function init(){
+  await loadProgress();
+  render();
+})();
+
+</script>
+</body>
+</html>
