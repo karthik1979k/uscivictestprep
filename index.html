@@ -988,7 +988,7 @@ function renderQuiz(c){
       if(opt===correctAnswer) cls += ' correct';
       else if(opt===qz.picked && opt!==correctAnswer) cls += ' incorrect';
     }
-    html += `<div class="${cls}" onclick="${qz.answered?'':'pickOption("'+encodeURIComponent(opt)+'")'}">${escapeHtml(opt)}</div>`;
+    html += `<div class="${cls}" onclick="${qz.answered?'':"pickOption('"+encodeURIComponent(opt)+"')"}">${escapeHtml(opt)}</div>`;
   });
   html += `</div>`;
   if(qz.answered){
