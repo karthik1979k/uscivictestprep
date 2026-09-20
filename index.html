@@ -564,7 +564,7 @@ const NJ = {
     ["12th", "Bonnie Watson Coleman (D)"]
   ]
 };
-const NJ_REP_ANSWER = "Depends on your district — " + NJ.reps.map(r=>r[0]+": "+r[1]).join(" · ") + ". Find yours at house.gov/representatives/find-your-representative";
+const NJ_REP_ANSWER = "Thomas Kean Jr. (Republican)";
 const NJ_SENATOR_ANSWER = NJ.senators;
 const NJ_GOV_ANSWER = NJ.governor;
 const NJ_CAPITAL_ANSWER = NJ.capital;
@@ -911,12 +911,12 @@ function render(){
 function officeholderBanner(){
   return `<div class="banner"><b>Current answers — federal</b> (verify at uscis.gov/citizenship/testupdates):
   President — ${CURRENT.president} · Vice President — ${CURRENT.vp} · Speaker of the House — ${CURRENT.speaker} · Chief Justice — ${CURRENT.chiefJustice}
-  <br><br><b>Your state — New Jersey:</b> Governor — ${NJ.governor} · U.S. Senators — ${NJ.senators} · State capital — ${NJ.capital}
-  <br><span style="font-size:0.72rem;">Your U.S. Representative depends on your district — see question ${state.version==='2008'?'23':'29'} for the full NJ list. Note: Sen. Booker's seat and all 12 NJ House seats are on the ballot November 3, 2026, so recheck these after the election.</span></div>`;
+  <br><br><b>Your state — New Jersey:</b> Governor — ${NJ.governor} · U.S. Senators — ${NJ.senators} · U.S. Representative — ${NJ_REP_ANSWER} (NJ-7) · State capital — ${NJ.capital}
+  <br><span style="font-size:0.72rem;">Sen. Booker's seat and all 12 NJ House seats are on the ballot November 3, 2026, so recheck these after the election.</span></div>`;
 }
 
-// Questions whose answer is district-dependent / too long for clean multiple choice
-const MC_EXCLUDE = { '2008':[23], '2025':[29] };
+// Questions excluded from Quick Quiz multiple choice (answer too long/list-like for clean options)
+const MC_EXCLUDE = { '2008':[], '2025':[] };
 
 // ============================================================
 // STUDY (flashcards)
