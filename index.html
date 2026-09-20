@@ -542,6 +542,33 @@ const CURRENT = {
   asOf: "September 2026"
 };
 
+// ---- New Jersey state-specific answers (verified Sep 2026) ----
+const NJ = {
+  state: "New Jersey",
+  capital: "Trenton",
+  governor: "Mikie Sherrill (Democrat, sworn in January 20, 2026)",
+  ltGovernor: "Dale Caldwell",
+  senators: "Cory Booker (D) and Andy Kim (D) — naming either one is a correct answer",
+  reps: [
+    ["1st", "Donald Norcross (D)"],
+    ["2nd", "Jeff Van Drew (R)"],
+    ["3rd", "Herb Conaway (D)"],
+    ["4th", "Chris Smith (R)"],
+    ["5th", "Josh Gottheimer (D)"],
+    ["6th", "Frank Pallone (D)"],
+    ["7th", "Thomas Kean Jr. (R)"],
+    ["8th", "Rob Menendez (D)"],
+    ["9th", "Nellie Pou (D)"],
+    ["10th", "LaMonica McIver (D)"],
+    ["11th", "Analilia Mejia (D)"],
+    ["12th", "Bonnie Watson Coleman (D)"]
+  ]
+};
+const NJ_REP_ANSWER = "Depends on your district — " + NJ.reps.map(r=>r[0]+": "+r[1]).join(" · ") + ". Find yours at house.gov/representatives/find-your-representative";
+const NJ_SENATOR_ANSWER = NJ.senators;
+const NJ_GOV_ANSWER = NJ.governor;
+const NJ_CAPITAL_ANSWER = NJ.capital;
+
 // Each question: [id, category, question, [acceptable answers...], starred]
 const TEST_2008 = {
   version: "2008",
@@ -569,10 +596,10 @@ const TEST_2008 = {
 [17,"System of Government","What are the two parts of the U.S. Congress?",["the Senate and House (of Representatives)"],true],
 [18,"System of Government","How many U.S. Senators are there?",["one hundred (100)"],false],
 [19,"System of Government","We elect a U.S. Senator for how many years?",["six (6)"],false],
-[20,"System of Government","Who is one of your state's U.S. Senators now?",["Answers vary by state — look up yours at senate.gov"],true],
+[20,"System of Government","Who is one of your state's U.S. Senators now?",[NJ_SENATOR_ANSWER],true],
 [21,"System of Government","The House of Representatives has how many voting members?",["four hundred thirty-five (435)"],false],
 [22,"System of Government","We elect a U.S. Representative for how many years?",["two (2)"],false],
-[23,"System of Government","Name your U.S. Representative.",["Answers vary by district — look up yours at house.gov"],false],
+[23,"System of Government","Name your U.S. Representative.",[NJ_REP_ANSWER],true],
 [24,"System of Government","Who does a U.S. Senator represent?",["all people of the state"],false],
 [25,"System of Government","Why do some states have more Representatives than other states?",["(because of) the state's population","(because) they have more people"],false],
 [26,"System of Government","We elect a President for how many years?",["four (4)"],false],
@@ -592,8 +619,8 @@ const TEST_2008 = {
 [40,"System of Government","Who is the Chief Justice of the United States now?",[CURRENT.chiefJustice],true],
 [41,"System of Government","Under our Constitution, some powers belong to the federal government. What is one power of the federal government?",["to print money","to declare war","to create an army","to make treaties"],false],
 [42,"System of Government","Under our Constitution, some powers belong to the states. What is one power of the states?",["provide schooling and education","provide protection (police)","provide safety (fire departments)","give a driver's license","approve zoning and land use"],false],
-[43,"System of Government","Who is the Governor of your state now?",["Answers vary by state"],false],
-[44,"System of Government","What is the capital of your state?",["Answers vary by state"],true],
+[43,"System of Government","Who is the Governor of your state now?",[NJ_GOV_ANSWER],true],
+[44,"System of Government","What is the capital of your state?",[NJ_CAPITAL_ANSWER],true],
 [45,"System of Government","What are the two major political parties in the United States?",["Democratic and Republican"],true],
 [46,"System of Government","What is the political party of the President now?",["Republican"],true],
 [47,"System of Government","What is the name of the Speaker of the House of Representatives now?",[CURRENT.speaker],true],
@@ -682,13 +709,13 @@ const TEST_2025 = {
 [20,"System of Government","Name one power of the U.S. Congress.",["Writes laws","Declares war","Makes the federal budget"],true],
 [21,"System of Government","How many U.S. senators are there?",["One hundred (100)"],false],
 [22,"System of Government","How long is a term for a U.S. senator?",["Six (6) years"],false],
-[23,"System of Government","Who is one of your state's U.S. senators now?",["Answers vary by state — look up yours at senate.gov"],false],
+[23,"System of Government","Who is one of your state's U.S. senators now?",[NJ_SENATOR_ANSWER],true],
 [24,"System of Government","How many voting members are in the House of Representatives?",["Four hundred thirty-five (435)"],false],
 [25,"System of Government","How long is a term for a member of the House of Representatives?",["Two (2) years"],false],
 [26,"System of Government","Why do U.S. representatives serve shorter terms than U.S. senators?",["To more closely follow public opinion"],false],
 [27,"System of Government","How many senators does each state have?",["Two (2)"],false],
 [28,"System of Government","Why does each state have two senators?",["Equal representation (for small states)","The Great Compromise (Connecticut Compromise)"],false],
-[29,"System of Government","Name your U.S. representative.",["Answers vary by district — look up yours at house.gov"],false],
+[29,"System of Government","Name your U.S. representative.",[NJ_REP_ANSWER],true],
 [30,"System of Government","What is the name of the Speaker of the House of Representatives now?",[CURRENT.speaker],true],
 [31,"System of Government","Who does a U.S. senator represent?",["Citizens of their state","People of their state"],false],
 [32,"System of Government","Who elects U.S. senators?",["Citizens from their state"],false],
@@ -720,8 +747,8 @@ const TEST_2025 = {
 [58,"System of Government","Name one power that is only for the federal government.",["Print paper money","Mint coins","Declare war","Create an army","Make treaties","Set foreign policy"],false],
 [59,"System of Government","Name one power that is only for the states.",["Provide schooling and education","Provide protection (police)","Provide safety (fire departments)","Give a driver's license","Approve zoning and land use"],false],
 [60,"System of Government","What is the purpose of the 10th Amendment?",["(It states that the) powers not given to the federal government belong to the states or to the people."],false],
-[61,"System of Government","Who is the governor of your state now?",["Answers vary by state"],true],
-[62,"System of Government","What is the capital of your state?",["Answers vary by state"],false],
+[61,"System of Government","Who is the governor of your state now?",[NJ_GOV_ANSWER],true],
+[62,"System of Government","What is the capital of your state?",[NJ_CAPITAL_ANSWER],true],
 [63,"Rights and Responsibilities","There are four amendments to the U.S. Constitution about who can vote. Describe one of them.",["Citizens eighteen (18) and older can vote.","You don't have to pay a poll tax to vote.","Any citizen can vote (women and men).","A male citizen of any race can vote."],false],
 [64,"Rights and Responsibilities","Who can vote in federal elections, run for federal office, and serve on a jury in the United States?",["Citizens","Citizens of the United States","U.S. citizens"],false],
 [65,"Rights and Responsibilities","What are three rights of everyone living in the United States?",["Freedom of expression","Freedom of speech","Freedom of assembly","Freedom to petition the government","Freedom of religion","The right to bear arms"],false],
@@ -882,9 +909,14 @@ function render(){
 }
 
 function officeholderBanner(){
-  return `<div class="banner"><b>Current officeholder answers</b> (verify before your interview at uscis.gov/citizenship/testupdates):
-  President — ${CURRENT.president} · Vice President — ${CURRENT.vp} · Speaker of the House — ${CURRENT.speaker} · Chief Justice — ${CURRENT.chiefJustice}</div>`;
+  return `<div class="banner"><b>Current answers — federal</b> (verify at uscis.gov/citizenship/testupdates):
+  President — ${CURRENT.president} · Vice President — ${CURRENT.vp} · Speaker of the House — ${CURRENT.speaker} · Chief Justice — ${CURRENT.chiefJustice}
+  <br><br><b>Your state — New Jersey:</b> Governor — ${NJ.governor} · U.S. Senators — ${NJ.senators} · State capital — ${NJ.capital}
+  <br><span style="font-size:0.72rem;">Your U.S. Representative depends on your district — see question ${state.version==='2008'?'23':'29'} for the full NJ list. Note: Sen. Booker's seat and all 12 NJ House seats are on the ballot November 3, 2026, so recheck these after the election.</span></div>`;
 }
+
+// Questions whose answer is district-dependent / too long for clean multiple choice
+const MC_EXCLUDE = { '2008':[23], '2025':[29] };
 
 // ============================================================
 // STUDY (flashcards)
@@ -988,7 +1020,7 @@ function renderQuiz(c){
       if(opt===correctAnswer) cls += ' correct';
       else if(opt===qz.picked && opt!==correctAnswer) cls += ' incorrect';
     }
-    html += `<div class="${cls}" onclick="${qz.answered?'':"pickOption('"+encodeURIComponent(opt)+"')"}">${escapeHtml(opt)}</div>`;
+    html += `<div class="${cls}" onclick="${qz.answered?'':'pickOption('+i+')'}">${escapeHtml(opt)}</div>`;
   });
   html += `</div>`;
   if(qz.answered){
@@ -999,7 +1031,9 @@ function renderQuiz(c){
 function buildOptions(t, qIdx){
   const qData = t.questions[qIdx];
   const correct = qData[3][0];
-  const pool = t.questions.filter((q,i)=> i!==qIdx).map(q=>q[3][0]);
+  const pool = t.questions
+    .filter((q,i)=> i!==qIdx && q[3][0].length <= 90)
+    .map(q=>q[3][0]);
   const distractors = [];
   const shuffledPool = pool.sort(()=>Math.random()-0.5);
   for(const p of shuffledPool){
@@ -1012,19 +1046,28 @@ function buildOptions(t, qIdx){
 function setQuizSize(n){ state.quiz.size = n; render(); }
 function startQuiz(){
   const t = getTest();
-  const order = shuffledIndices(t.questions.length).slice(0, state.quiz.size);
+  const excluded = MC_EXCLUDE[state.version] || [];
+  const eligible = t.questions
+    .map((q,i)=>({q,i}))
+    .filter(o => !excluded.includes(o.q[0]) && o.q[3][0].length <= 90)
+    .map(o=>o.i);
+  const pool = eligible.sort(()=>Math.random()-0.5);
+  const order = pool.slice(0, Math.min(state.quiz.size, pool.length));
   state.quiz = { setup:false, size:state.quiz.size, order, index:0, correct:0, wrong:0, answered:false, missed:[], options:null };
   render();
 }
-function pickOption(encoded){
-  const opt = decodeURIComponent(encoded);
+function pickOption(i){
   const t = getTest();
-  const qData = t.questions[state.quiz.order[state.quiz.index]];
+  const qz = state.quiz;
+  if(qz.answered) return;
+  const opt = qz.options[i];
+  if(opt === undefined) return;
+  const qData = t.questions[qz.order[qz.index]];
   const correct = qData[3][0];
-  state.quiz.picked = opt;
-  state.quiz.answered = true;
-  if(opt===correct) state.quiz.correct++;
-  else { state.quiz.wrong++; state.quiz.missed.push(qData); }
+  qz.picked = opt;
+  qz.answered = true;
+  if(opt===correct) qz.correct++;
+  else { qz.wrong++; qz.missed.push(qData); }
   render();
 }
 function nextQuizQuestion(){
